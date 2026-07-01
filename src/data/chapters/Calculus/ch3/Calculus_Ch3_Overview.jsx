@@ -32,7 +32,7 @@ export default function Calculus_Ch3_Overview({ setActiveTopicId }) {
       <Definition title="第三章 學習目標 (Learning Objectives)">
         <ul style={{ paddingLeft: '20px', color: 'var(--text-secondary)', lineHeight: '1.7', display: 'flex', flexDirection: 'column', gap: '8px' }}>
           <li>
-            <strong>理解導數與幾何意義：</strong> 深入掌握導數的極限定義（差商極限），並能寫出曲線在給定點的切線方程式。
+            <strong>理解導數與幾何意義：</strong> 深入掌握導數的極限定義，並能寫出曲線在給定點的切線方程式。
           </li>
           <li>
             <strong>判定可微與連續性：</strong> 理解可微性 (Differentiability) 的定義，並能用極限分析函數在分段點或尖點（如絕對值）是否可微。

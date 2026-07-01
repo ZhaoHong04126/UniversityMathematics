@@ -10,7 +10,6 @@ export default function App() {
     return localStorage.getItem('notes-active-topic') || null;
   });
 
-  const [searchQuery, setSearchQuery] = useState('');
   const [mobileOpen, setMobileOpen] = useState(false);
 
   // Apply theme to document attribute
@@ -55,8 +54,6 @@ export default function App() {
       <Sidebar
         activeTopicId={activeTopicId}
         setActiveTopicId={setActiveTopicId}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
         mobileOpen={mobileOpen}
         setMobileOpen={setMobileOpen}
       />

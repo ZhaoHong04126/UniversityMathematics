@@ -4,8 +4,6 @@ import { chaptersData } from '../data/chapters';
 export default function Sidebar({
   activeTopicId,
   setActiveTopicId,
-  searchQuery,
-  setSearchQuery,
   mobileOpen,
   setMobileOpen
 }) {
@@ -36,35 +34,6 @@ export default function Sidebar({
     setMobileOpen(false); // Close sidebar on mobile
   };
 
-  const filteredChapters = chaptersData.map(chapter => {
-    const matchedTopics = [];
-    
-    for (const topic of chapter.topics) {
-      const topicMatches = topic.title.toLowerCase().includes(searchQuery.toLowerCase());
-      
-      let matchedSubtopics = [];
-      if (topic.subtopics) {
-        matchedSubtopics = topic.subtopics.filter(subtopic =>
-          subtopic.title.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-      }
-      
-      if (topicMatches || matchedSubtopics.length > 0) {
-        matchedTopics.push({
-          ...topic,
-          subtopics: searchQuery.trim() !== '' 
-            ? (topicMatches ? topic.subtopics : matchedSubtopics) 
-            : topic.subtopics
-        });
-      }
-    }
-    
-    return {
-      ...chapter,
-      topics: matchedTopics
-    };
-  }).filter(chapter => searchQuery.trim() === '' || chapter.topics.length > 0);
-
   return (
     <>
       {/* Mobile backdrop */}
@@ -80,30 +49,12 @@ export default function Sidebar({
             <div className="logo-icon">∑</div>
             <div className="logo-text">大學數學</div>
           </div>
-          
-          <div className="search-container">
-            <input
-              type="text"
-              placeholder="搜尋數學講義與單元..."
-              className="search-input"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <svg className="search-icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </div>
         </div>
 
         {/* Course Chapter Tree */}
         <div className="sidebar-nav">
-          {filteredChapters.map((chapter) => {
-            const isExpanded = searchQuery.trim() !== ''
-              ? chapter.topics.some(t => 
-                  t.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                  (t.subtopics && t.subtopics.some(s => s.title.toLowerCase().includes(searchQuery.toLowerCase())))
-                )
-              : !!expandedChapters[chapter.id];
+          {chaptersData.map((chapter) => {
+            const isExpanded = !!expandedChapters[chapter.id];
 
             return (
               <div key={chapter.id} className="chapter-group">
@@ -131,9 +82,7 @@ export default function Sidebar({
                   <div className="topics-list">
                     {chapter.topics.map((topic) => {
                       const hasSubtopics = topic.subtopics && topic.subtopics.length > 0;
-                      const isTopicExpanded = searchQuery.trim() !== ''
-                        ? topic.subtopics && topic.subtopics.some(s => s.title.toLowerCase().includes(searchQuery.toLowerCase()))
-                        : !!expandedTopics[topic.id];
+                      const isTopicExpanded = !!expandedTopics[topic.id];
 
                       return (
                         <div key={topic.id} className="topic-group">
