@@ -1,5 +1,14 @@
+import Calculus_Ch1_Overview from './chapters/Calculus/ch1/Calculus_Ch1_Overview';
 import Calculus_1_1 from './chapters/Calculus/ch1/Calculus_1_1';
 import Calculus_1_2 from './chapters/Calculus/ch1/Calculus_1_2';
+import Calculus_1_3 from './chapters/Calculus/ch1/Calculus_1_3';
+import Calculus_1_4 from './chapters/Calculus/ch1/Calculus_1_4';
+// import Calculus_1_5 from './chapters/Calculus/ch1/Calculus_1_5';
+// import Calculus_1_6 from './chapters/Calculus/ch1/Calculus_1_6';
+// import Calculus_2_1 from './chapters/Calculus/ch2/Calculus_2_1';
+// import Calculus_3_1 from './chapters/Calculus/ch2/Calculus_3_1';
+// import Calculus_4_1 from './chapters/Calculus/ch2/Calculus_4_1';
+// import Calculus_5_1 from './chapters/Calculus/ch2/Calculus_5_1';
 import LR5 from './chapters/info/LR_5';
 
 export const chaptersData = [
@@ -12,6 +21,7 @@ export const chaptersData = [
       {
         id: "1-1",
         title: "第一章：函數",
+        component: Calculus_Ch1_Overview,
         subtopics: [
           {
             id: "1-1-1",
@@ -25,65 +35,63 @@ export const chaptersData = [
           },
           {
             id: "1-1-3",
-            title: "1.3 三角函數",
-            content: "未有此內容"
+            title: "1.3 反函數",
+            component: Calculus_1_3
           },
           {
             id: "1-1-4",
-            title: "1.4 指數函數與對數函數",
-            content: "未有此內容"
+            title: "1.4 三角函數與反三角函數",
+            component: Calculus_1_4
           },
           {
             id: "1-1-5",
-            title: "1.5 反函數",
-            content: "未有此內容"
+            title: "1.5 指數函數與對數函數",
+            const: "未有此內容",
+            // component: Calculus_1_5
           },
           {
             id: "1-1-6",
-            title: "1.6 反三角函數",
-            content: "未有此內容"
+            title: "1.6 雙曲函數與反雙曲函數",
+            const: "未有此內容",
+            // component: Calculus_1_6
           },
-          {
-            id: "1-1-7",
-            title: "1.7 雙曲函數",
-            content: "未有此內容"
-          },
-          {
-            id: "1-1-8",
-            title: "1.8 反雙曲函數",
-            content: "未有此內容"
-          }
         ]
       },
       {
         id: "1-2",
         title: "第二章：極限與連續性",
-        content: "未有此內容"
+        content: "未有此內容",
+        // component: [] // Calculus_2_1
       },
       {
         id: "1-3",
         title: "第三章：導數",
-        content: "未有此內容"
+        content: "未有此內容",
+        // component: [] // Calculus_3_1
       },
       {
         id: "1-4",
         title: "第四章：微分的應用",
-        content: "未有此內容"
+        content: "未有此內容",
+        // component: [] // Calculus_4_1
       },
       {
         id: "1-5",
         title: "第五章：積分",
-        content: "未有此內容"
+        content: "未有此內容",
+        // component: [] // Calculus_5_1
       },
       {
         id: "1-6",
         title: "第六章：積分技巧",
-        content: "未有此內容"
+        content: "未有此內容",
+        // component: [] // Calculus_6_1
       },
       {
         id: "1-7",
         title: "第七章：無窮數列與級數",
-        content: "未有此內容"
+        content: "未有此內容",
+        // component: [] // Calculus_7_1
       }
     ]
   },

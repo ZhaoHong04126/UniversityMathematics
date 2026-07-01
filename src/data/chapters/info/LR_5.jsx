@@ -56,7 +56,7 @@ export default function LR5() {
               <td style={{ ...tdStyle, ...milestoneStyle }}>v0.0 初始化架構</td>
               <td style={tdStyle}>
                 - 建置 Vite + React 基礎專案<br />
-                - 設計深色書籍風格佈局與響應式側邊欄<br />
+                - 設計響應式側邊欄<br />
                 - 實作三層目錄展開收合與全域搜尋功能
               </td>
             </tr>
@@ -69,8 +69,16 @@ export default function LR5() {
               </td>
             </tr>
             <tr>
+              <td style={{ ...tdStyle, ...dateStyle }}>2026-07-01</td>
+              <td style={{ ...tdStyle, ...milestoneStyle }}>v0.2 製作微積分</td>
+              <td style={tdStyle}>
+                - 1.1~1.4<br />
+                - 設計淺色書籍風格佈局
+              </td>
+            </tr>
+            <tr>
               <td style={{ ...tdStyle, ...dateStyle }}>未來規劃</td>
-              <td style={{ ...tdStyle, ...milestoneStyle }}>v0.2 自定義撰寫與內容填充</td>
+              <td style={{ ...tdStyle, ...milestoneStyle }}>v0.3 自定義撰寫與內容填充</td>
               <td style={tdStyle}>
                 - 開始填充內容<br />
                 - 逐步撰寫各單元的練習題與定理推導過程

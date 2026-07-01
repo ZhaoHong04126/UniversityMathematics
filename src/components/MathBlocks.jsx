@@ -2,12 +2,12 @@ import { useState } from 'react';
 
 // 行內數學公式
 export function MathInline({ math }) {
-  return <span className="math-inline">{math}</span>;
+  return <span className="math-inline">{`\\(${math}\\)`}</span>;
 }
 
 // 區塊數學公式
 export function MathBlock({ math }) {
-  return <div className="math-block">{math}</div>;
+  return <div className="math-block">{`\\[${math}\\]`}</div>;
 }
 
 // 定義區塊

@@ -1,6 +1,14 @@
+import { useEffect } from 'react';
 import { chaptersData } from '../data/chapters';
 
 export default function MainContent({ activeTopicId, setActiveTopicId }) {
+  // Trigger MathJax typesetting when the active topic changes
+  useEffect(() => {
+    if (window.MathJax && window.MathJax.typesetPromise) {
+      window.MathJax.typesetPromise();
+    }
+  }, [activeTopicId]);
+
   // Find the active topic/subtopic and its parent/chapter
   let activeTopic = null;
   let activeChapter = null;
@@ -40,7 +48,7 @@ export default function MainContent({ activeTopicId, setActiveTopicId }) {
       if (index % 2 === 1) {
         return (
           <span key={index} className="math-inline">
-            {part}
+            {`\\(${part}\\)`}
           </span>
         );
       }
@@ -97,7 +105,7 @@ export default function MainContent({ activeTopicId, setActiveTopicId }) {
             const eq = line.trim().slice(2, -2);
             return (
               <div key={idx} className="math-block">
-                {eq}
+                {`\\[${eq}\\]`}
               </div>
             );
           }
@@ -217,87 +225,73 @@ export default function MainContent({ activeTopicId, setActiveTopicId }) {
   // Selected Chapter Reading View
   return (
     <div className="content-wrapper">
-      <div className="main-content" style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: '24px 40px' }}>
-        
-        {/* Breadcrumbs and active section */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-          <div className="breadcrumbs" style={{ margin: '0' }}>
-            <span 
-              onClick={() => setActiveTopicId(null)}
-              style={{ cursor: 'pointer', transition: 'var(--transition)' }}
-              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
-              onMouseLeave={(e) => e.currentTarget.style.color = 'inherit'}
-            >
-              大學數學
-            </span>
-            <span>/</span>
-            <span 
-              onClick={() => {
-                setActiveTopicId(null);
-                setTimeout(() => {
-                  const element = document.getElementById(activeChapter.id);
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    element.style.borderColor = 'var(--accent-primary)';
-                    setTimeout(() => {
-                      element.style.borderColor = 'var(--border-color)';
-                    }, 1500);
-                  }
-                }, 100);
-              }}
-              style={{ cursor: 'pointer', transition: 'var(--transition)' }}
-              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
-              onMouseLeave={(e) => e.currentTarget.style.color = 'inherit'}
-            >
-              {activeChapter.title}
-            </span>
-            <span>/</span>
-            {parentTopic && (
-              <>
-                <span 
-                  onClick={() => setActiveTopicId(parentTopic.id)}
-                  style={{ cursor: 'pointer', transition: 'var(--transition)' }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
-                  onMouseLeave={(e) => e.currentTarget.style.color = 'inherit'}
-                >
-                  {parentTopic.title}
-                </span>
-                <span>/</span>
-              </>
-            )}
-            <span style={{ color: 'var(--accent-primary)', fontWeight: '500' }}>{activeTopic.title}</span>
+      <div className="main-content" style={{ padding: '40px', overflowY: 'auto', height: '100%', width: '100%' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto', width: '100%' }}>
+          
+          {/* Breadcrumbs and active section */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+            <div className="breadcrumbs" style={{ margin: '0' }}>
+              <span 
+                onClick={() => setActiveTopicId(null)}
+                style={{ cursor: 'pointer', transition: 'var(--transition)' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'inherit'}
+              >
+                大學數學
+              </span>
+              <span>/</span>
+              <span 
+                onClick={() => {
+                  setActiveTopicId(null);
+                  setTimeout(() => {
+                    const element = document.getElementById(activeChapter.id);
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                      element.style.borderColor = 'var(--accent-primary)';
+                      setTimeout(() => {
+                        element.style.borderColor = 'var(--border-color)';
+                      }, 1500);
+                    }
+                  }, 100);
+                }}
+                style={{ cursor: 'pointer', transition: 'var(--transition)' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'inherit'}
+              >
+                {activeChapter.title}
+              </span>
+              <span>/</span>
+              {parentTopic && (
+                <>
+                  <span 
+                    onClick={() => setActiveTopicId(parentTopic.id)}
+                    style={{ cursor: 'pointer', transition: 'var(--transition)' }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = 'inherit'}
+                  >
+                    {parentTopic.title}
+                  </span>
+                  <span>/</span>
+                </>
+              )}
+              <span style={{ color: 'var(--accent-primary)', fontWeight: '500' }}>{activeTopic.title}</span>
+            </div>
           </div>
-        </div>
 
-        {/* Content Box */}
-        <div style={{ 
-          flex: 1, 
-          border: '1px solid var(--border-color)', 
-          borderRadius: 'var(--radius-md)',
-          backgroundColor: 'var(--bg-secondary)',
-          display: 'flex',
-          flexDirection: 'column',
-          overflow: 'hidden'
-        }}>
-          <div style={{
-            flex: 1,
-            overflowY: 'auto',
-            padding: '40px',
-            backgroundColor: 'var(--bg-secondary)'
-          }}>
-            <h1 style={{ fontSize: '2.2rem', marginBottom: '16px', borderBottom: '1px solid var(--border-color)', paddingBottom: '16px' }}>
-              {activeTopic.title}
-            </h1>
-            {activeTopic.component ? (
-              <div className="math-serif" style={{ fontSize: '1.05rem', lineHeight: '1.8' }}>
-                <activeTopic.component />
-              </div>
-            ) : (
-              renderMarkdownAndMath(activeTopic.content)
-            )}
-          </div>
+          <h1 style={{ fontSize: '2.2rem', marginBottom: '16px', borderBottom: '1px solid var(--border-color)', paddingBottom: '16px' }}>
+            {activeTopic.title}
+          </h1>
+          {activeTopic.component ? (
+            <div className="math-serif" style={{ fontSize: '1.05rem', lineHeight: '1.8' }}>
+              <activeTopic.component 
+                activeTopicId={activeTopicId} 
+                setActiveTopicId={setActiveTopicId} 
+              />
+            </div>
+          ) : (
+            renderMarkdownAndMath(activeTopic.content)
+          )}
         </div>
-
       </div>
     </div>
   );

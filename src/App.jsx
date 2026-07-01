@@ -3,10 +3,8 @@ import Sidebar from './components/Sidebar';
 import MainContent from './components/MainContent';
 
 export default function App() {
-  // Initialize state from localStorage
-  const [theme] = useState(() => {
-    return localStorage.getItem('notes-theme') || 'dark';
-  });
+  // Initialize theme to light mode (light orange)
+  const [theme] = useState('light');
   
   const [activeTopicId, setActiveTopicId] = useState(() => {
     return localStorage.getItem('notes-active-topic') || null;
