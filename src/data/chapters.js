@@ -49,7 +49,7 @@ export const chaptersData = [
           },
           {
             id: "1-1-3",
-            title: "1.3 反函數",
+            title: "1.3 合成函數與反函數",
             component: Calculus_1_3
           },
           {

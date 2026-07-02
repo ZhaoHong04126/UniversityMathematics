@@ -12,13 +12,45 @@ export default function Ch1_1_3() {
         color: 'var(--text-primary)',
         fontWeight: '600'
       }}>
-        1.3 反函數 (Inverse Functions)
+        1.3 合成函數與反函數 (Composite & Inverse Functions)
       </h2>
       <p style={{ margin: '16px 0 24px 0', color: 'var(--text-secondary)', lineHeight: '1.8' }}>
-        在數學中，如果我們知道一個函數如何將輸入對應到輸出，有時我們會想進行「逆向操作」——即從輸出找回原本的輸入。這種能夠逆轉對應關係的函數，就稱為<strong>反函數</strong>。並非所有函數都有反函數，只有滿足特定條件的函數才具備此性質。
+        在數學中，我們可以透過「合成」將多個簡單函數組合為更複雜的函數；相反地，當我們已知一個函數的對應關係時，我們有時會想進行「逆向操作」——即從輸出找回原本的輸入，這就引進了反函數的概念。本單元將詳細探討合成函數的建構與定義域限制，以及反函數的存在條件與求解方法。
       </p>
 
-      {/* 一、一對一函數與水平線檢驗法 */}
+      {/* 一、合成函數 */}
+      <Definition title="合成函數 (Composite Functions)">
+        <p style={{ marginBottom: '14px', color: 'var(--text-secondary)', lineHeight: '1.8' }}>
+          給定兩個函數 <MathInline math="f" /> 與 <MathInline math="g" />，其<strong>合成函數</strong> <MathInline math="f \circ g" />（讀作「<MathInline math="f" /> 合成 <MathInline math="g" />」）定義為：
+        </p>
+        <MathBlock math="(f \circ g)(x) = f(g(x))" />
+        
+        <p style={{ margin: '14px 0 8px 0', color: 'var(--text-primary)', fontWeight: '600' }}>
+          定義域與運作機制 (Domain & Mechanism)：
+        </p>
+        <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '12px' }}>
+          合成函數 <MathInline math="f(g(x))" /> 的運作就像是一個兩級流水線機器：輸入 <MathInline math="x" /> 先進入內部函數 <MathInline math="g" /> 得到輸出 <MathInline math="g(x)" />，接著該輸出再做為輸入進入外部函數 <MathInline math="f" />。
+          <br />
+          因此，<MathInline math="f \circ g" /> 的定義域為：所有使得 <MathInline math="g(x)" /> 有定義，且 <MathInline math="g(x)" /> 的值必須落在 <MathInline math="f" /> 的定義域內的自變數 <MathInline math="x" /> 之集合。
+        </p>
+        <div style={{
+          marginTop: '16px',
+          padding: '12px 16px',
+          backgroundColor: 'rgba(255, 255, 255, 0.02)',
+          borderRadius: 'var(--radius-sm)',
+          border: '1px dashed var(--border-color)',
+          fontSize: '0.92rem',
+          color: 'var(--text-secondary)'
+        }}>
+          ⚠️ <strong>重要性質：不可交換性 (Non-commutativity)</strong>
+          <br />
+          在一般情況下，函數的合成<strong>不滿足交換律</strong>，即：
+          <MathBlock math="f \circ g \neq g \circ f" />
+          兩者合成的順序與結果通常截然不同。
+        </div>
+      </Definition>
+
+      {/* 二、一對一函數與水平線檢驗法 */}
       <Definition title="一對一函數 (One-to-One Functions)">
         <p style={{ marginBottom: '14px', color: 'var(--text-secondary)', lineHeight: '1.8' }}>
           一個函數 <MathInline math="f" /> 稱為<strong>一對一函數</strong>，是指它不會將兩個不同的輸入對應到同一個輸出值：
@@ -143,7 +175,51 @@ export default function Ch1_1_3() {
       </h3>
 
       {/* 例題 1 */}
-      <Example title="求有理分式函數的反函數">
+      <Example title="1：合成函數的求解與定義域">
+        <p style={{ color: 'var(--text-secondary)', lineHeight: '1.7' }}>
+          設函數 <MathInline math="f(x) = \sqrt{x}" />，其定義域為 <MathInline math="[0, \infty)" />；函數 <MathInline math="g(x) = 2 - x" />，其定義域為全體實數。
+          <br />
+          (1) 求合成函數 <MathInline math="(f \circ g)(x)" /> 及其定義域。
+          <br />
+          (2) 求合成函數 <MathInline math="(g \circ f)(x)" /> 及其定義域。
+        </p>
+        <Solution>
+          <p style={{ fontWeight: '600', color: 'var(--text-primary)', marginBottom: '6px' }}>
+            (1) 求解 (f ∘ g)(x) 及其定義域：
+          </p>
+          <div style={{ marginBottom: '10px', color: 'var(--text-secondary)', lineHeight: '1.7' }}>
+            根據合成定義：
+            <MathBlock math="(f \circ g)(x) = f(g(x)) = f(2 - x) = \sqrt{2 - x}" />
+          </div>
+          <div style={{ marginBottom: '10px', color: 'var(--text-secondary)', lineHeight: '1.7' }}>
+            為了使此根式有意義，根號內的值必須大於或等於零：
+            <MathBlock math="2 - x \ge 0 \implies x \le 2" />
+          </div>
+          <p style={{ marginBottom: '14px', color: 'var(--text-secondary)', lineHeight: '1.7' }}>
+            因此，合成函數 <MathInline math="(f \circ g)(x) = \sqrt{2 - x}" />，其定義域為 <strong><MathInline math="(-\infty, 2]" /></strong>。
+          </p>
+
+          <p style={{ fontWeight: '600', color: 'var(--text-primary)', marginBottom: '6px' }}>
+            (2) 求解 (g ∘ f)(x) 及其定義域：
+          </p>
+          <div style={{ marginBottom: '10px', color: 'var(--text-secondary)', lineHeight: '1.7' }}>
+            根據合成定義：
+            <MathBlock math="(g \circ f)(x) = g(f(x)) = g(\sqrt{x}) = 2 - \sqrt{x}" />
+          </div>
+          <p style={{ marginBottom: '10px', color: 'var(--text-secondary)', lineHeight: '1.7' }}>
+            自變數 <MathInline math="x" /> 首先必須落在內部函數 <MathInline math="f(x)" /> 的定義域內，即 <MathInline math="x \ge 0" />。
+            而外部函數 <MathInline math="g(t) = 2 - t" /> 的定義域為全體實數，故無額外限制。
+          </p>
+          <p style={{ color: 'var(--text-secondary)', lineHeight: '1.7' }}>
+            因此，合成函數 <MathInline math="(g \circ f)(x) = 2 - \sqrt{x}" />，其定義域為 <strong><MathInline math="[0, \infty)" /></strong>。
+            <br />
+            <em>（註：這展示了 <MathInline math="f \circ g \neq g \circ f" />，兩者的對應關係與定義域皆不相同）</em>
+          </p>
+        </Solution>
+      </Example>
+
+      {/* 例題 2 */}
+      <Example title="2：求有理分式函數的反函數">
         <p style={{ color: 'var(--text-secondary)', lineHeight: '1.7' }}>
           設函數 <MathInline math="f(x) = \frac{2x + 3}{x - 1} \quad (x \neq 1)" />：
           <br />
@@ -196,8 +272,8 @@ export default function Ch1_1_3() {
         </Solution>
       </Example>
 
-      {/* 例題 2 */}
-      <Example title="求限制定義域的根式函數反函數">
+      {/* 例題 3 */}
+      <Example title="3：求限制定義域的根式函數反函數">
         <p style={{ color: 'var(--text-secondary)', lineHeight: '1.7' }}>
           設函數 <MathInline math="f(x) = \sqrt{x - 1}" />，其定義域為 <MathInline math="[1, \infty)" />。
           <br />

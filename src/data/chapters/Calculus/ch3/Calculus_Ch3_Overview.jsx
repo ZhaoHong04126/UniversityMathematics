@@ -1,4 +1,4 @@
-import { Definition, MathInline } from '../../../../components/MathBlocks';
+import { Definition } from '../../../../components/MathBlocks';
 
 export default function Calculus_Ch3_Overview({ setActiveTopicId }) {
   const subtopics = [
