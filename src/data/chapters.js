@@ -12,6 +12,7 @@ import Calculus_2_1 from './chapters/Calculus/ch2/Calculus_2_1';
 import Calculus_2_2 from './chapters/Calculus/ch2/Calculus_2_2';
 import Calculus_2_3 from './chapters/Calculus/ch2/Calculus_2_3';
 import Calculus_2_4 from './chapters/Calculus/ch2/Calculus_2_4';
+import Calculus_2_5 from './chapters/Calculus/ch2/Calculus_2_5';
 
 
 import Calculus_Ch3_Overview from './chapters/Calculus/ch3/Calculus_Ch3_Overview';
@@ -93,6 +94,11 @@ export const chaptersData = [
             id: "1-2-4",
             title: "2.4 函數的連續性與重要定理",
             component: Calculus_2_4
+          },
+          {
+            id: "1-2-5",
+            title: "2.5 常用極限公式",
+            component: Calculus_2_5
           }
         ]
       },

@@ -941,3 +941,14 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
   background-color: var(--bg-tertiary);
 }
+
+/* Custom styles to prevent math block overflow and remove double-borders in grid layouts */
+.limit-formulas-grid .math-block {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 6px 0 !important;
+  box-shadow: none !important;
+  text-align: center !important;
+  width: 100% !important;
+  margin: 4px 0 !important;
+}
