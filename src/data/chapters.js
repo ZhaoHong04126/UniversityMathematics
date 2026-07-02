@@ -76,12 +76,12 @@ export const chaptersData = [
         subtopics: [
           {
             id: "1-2-1",
-            title: "2.1 極限的直觀定義與運算法則",
+            title: "2.1 極限的直觀定義",
             component: Calculus_2_1
           },
           {
             id: "1-2-2",
-            title: "2.2 極限的嚴格定義與 ε-δ 證明",
+            title: "2.2 極限的嚴格定義與運算法則",
             component: Calculus_2_2
           },
           {
