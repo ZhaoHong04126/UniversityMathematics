@@ -47,6 +47,8 @@ import Calculus_6_4 from './chapters/Calculus/ch6/Calculus_6_4';
 import Calculus_6_5 from './chapters/Calculus/ch6/Calculus_6_5';
 import Calculus_6_6 from './chapters/Calculus/ch6/Calculus_6_6';
 import Calculus_Ch7_Overview from './chapters/Calculus/ch7/Calculus_Ch7_Overview';
+import Calculus_7_1 from './chapters/Calculus/ch7/Calculus_7_1';
+
 
 export const chaptersData = [
   // 1. 微積分
@@ -278,7 +280,13 @@ export const chaptersData = [
         id: "IntegralApplications",
         title: "第七章：積分的應用",
         component: Calculus_Ch7_Overview,
-        subtopics: []
+        subtopics: [
+          {
+            id: "1-7-1",
+            title: "7.1 兩曲線間的面積",
+            component: Calculus_7_1
+          }
+        ]
       },
       // 第八章：極座標與參數式
       {
